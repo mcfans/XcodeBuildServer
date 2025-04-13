@@ -15,7 +15,10 @@ let package = Package(
             targets: ["XcodeBuildServer"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-build.git", branch: "main")
+        .package(url: "https://github.com/swiftlang/swift-build.git", branch: "main"),
+        .package(url: "https://github.com/mcfans/sourcekit-lsp.git", revision: "8841553a16a3d431a05a17aa1f246ca1214d757b"),
+        .package(url: "https://github.com/apple/swift-argument-parser.git", exact: "1.5.0"),
+        .package(url: "https://github.com/groue/Semaphore.git", branch: "main")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -25,6 +28,8 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftBuild", package: "swift-build"),
                 .product(name: "SWBBuildService", package: "swift-build"),
+                .product(name: "BSPBindings", package: "sourcekit-lsp"),
+                .product(name: "Semaphore", package: "Semaphore")
             ]
         ),
         .testTarget(
