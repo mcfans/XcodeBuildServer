@@ -233,6 +233,9 @@ actor Session {
     func fetchTargets() -> [BuildTarget] {
         var buildTargets: [BuildTarget] = []
         for target in targets {
+            if target.name != self.target {
+                continue
+            }
             var tags: [String] = []
             if target.guid.starts(with: "PACKAGE") {
                 tags.append("dependency")
@@ -315,7 +318,7 @@ actor Session {
         guard let session = session else {
             throw XcodeBuildServerError.sessionNotLoaded
         }
-        logger.info("Prepare")
+        logger.info("Prepare \(targetId)")
         await semaphore.wait()
         defer {
             semaphore.signal()
