@@ -513,7 +513,6 @@ class PropertyListParser {
               case .plDict(let contentsDict) = contents,
               let groupTree = contentsDict["groupTree"],
               case .plDict(let groupTreeDict) = groupTree else {
-            print("无法找到 groupTree 结构")
             return []
         }
         
