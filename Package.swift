@@ -16,8 +16,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/swiftlang/swift-build.git", branch: "main"),
-        .package(url: "https://github.com/mcfans/sourcekit-lsp.git", revision: "8841553a16a3d431a05a17aa1f246ca1214d757b"),
-        .package(url: "https://github.com/apple/swift-argument-parser.git", exact: "1.5.0"),
+        .package(url: "https://github.com/swiftlang/sourcekit-lsp", branch: "main"),
+        .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.1"),
         .package(url: "https://github.com/groue/Semaphore.git", branch: "main")
     ],
     targets: [
@@ -28,7 +28,8 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftBuild", package: "swift-build"),
                 .product(name: "SWBBuildService", package: "swift-build"),
-                .product(name: "BSPBindings", package: "sourcekit-lsp"),
+                .product(name: "BuildServerProtocol", package: "sourcekit-lsp"),
+                .product(name: "LSPBindings", package: "sourcekit-lsp"),
                 .product(name: "Semaphore", package: "Semaphore")
             ]
         ),
